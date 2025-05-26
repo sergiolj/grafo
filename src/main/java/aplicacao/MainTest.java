@@ -1,7 +1,6 @@
 package aplicacao;
 
 import core.Grafo;
-import core.GraphInterface;
 import core.Vertice;
 import core.util.CreateGraphviz;
 
