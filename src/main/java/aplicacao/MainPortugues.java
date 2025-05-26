@@ -6,28 +6,40 @@ import core.util.CreateGraphviz;
 
 public class MainPortugues {
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws Exception {
 
             Grafo grafo = new Grafo();
 
-            grafo.adicionarVertice("RJ");
-            grafo.adicionarVertice("SP");
-            grafo.adicionarVertice("BH");
-            grafo.adicionarVertice("PT");
-            grafo.adicionarVertice("OS");
-            grafo.adicionarVertice("SV");
-            grafo.adicionarVertice("CR");
-            grafo.adicionarVertice("PA");
+            grafo.adicionarVertice("A1");
+            grafo.adicionarVertice("B1");
+            grafo.adicionarVertice("C1");
+            grafo.adicionarVertice("D1");
+
+            grafo.conectarVertices("A1","B1");
+            grafo.conectarVertices("A1","B1");
+
+            grafo.conectarVertices("B1","C1");
+            grafo.conectarVertices("A1","D1");
+
+            grafo.conectarVertices("C1","C1");
+            grafo.conectarVertices("A1","A1");
 
             System.out.println("O grafo G possui os seguintes vértices:");
             System.out.println();
 
-            for(Vertice vertice : grafo.getVertices()) {
-                System.out.println("- Vértice " + vertice.getRotulo());
-            }
+            System.out.println(grafo.getVertices());
+            System.out.println(grafo.getVerticeRotulo(0));
+            System.out.println(grafo.getAdjacencias(grafo.getVerticeRotulo(0)));
+
             CreateGraphviz gviz = new CreateGraphviz(grafo);
-            gviz.createVerticesDotFile("grafo.dot", "GrafoTest");
-            gviz.createGrafoDotFile("grafo.dot", "grafoTest");
+            //gviz.createVerticesDotFile("vertices.dot", "GrafoVertices");
+            gviz.createGrafoDotFile("grafo", "Grafo");
+//            for(Vertice vertice : grafo.getVertices()) {
+//                System.out.println("- Vértice " + vertice.getRotulo());
+//            }
+//            CreateGraphviz gviz = new CreateGraphviz(grafo);
+
+//            gviz.createGrafoDotFile("grafo.dot", "grafoTest");
 
         }
     }

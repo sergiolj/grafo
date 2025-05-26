@@ -71,7 +71,9 @@ public class MainTest {
         }
 
         CreateGraphviz cviz = new CreateGraphviz(grafo);
-        cviz.createGrafoDotFile("arquivo.dot", "grafoTest");
+        System.out.println();
+
+        cviz.createGrafoDotFile("dama.dot", "dama");
         cviz.createVerticesDotFile("vertices.dot", "grafoVertice");
     }
 }

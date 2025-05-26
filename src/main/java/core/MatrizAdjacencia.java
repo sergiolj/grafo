@@ -51,4 +51,9 @@ public class MatrizAdjacencia {
         }
         return adjacencias;
     }
+
+
+    public int[][] getMatrizAdjacencias() {
+        return this.matriz;
+    }
 }

@@ -38,6 +38,10 @@ public class Grafo {
         int indice = this.rotulosEmIndices.get(rotulo);
         return this.vertices.get(indice);
     }
+
+    public String getVerticeRotulo(int indice) {
+        return this.vertices.get(indice).getRotulo();
+    }
     
     public void conectarVertices(String rotuloVerticeInicial, String rotuloVerticeFinal) throws Exception{
         if(!this.existeVertice(rotuloVerticeInicial) || !this.existeVertice(rotuloVerticeFinal)) {
@@ -78,5 +82,6 @@ public class Grafo {
     public MatrizAdjacencia getAdjacencias() {
         return this.matrizAdjacencia;
     }
+
 
 }
