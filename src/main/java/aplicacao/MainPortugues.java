@@ -32,14 +32,9 @@ public class MainPortugues {
             System.out.println(grafo.getAdjacencias(grafo.getVerticeRotulo(0)));
 
             CreateGraphviz gviz = new CreateGraphviz(grafo);
-            //gviz.createVerticesDotFile("vertices.dot", "GrafoVertices");
-            gviz.createGrafoDotFile("grafo", "Grafo");
-//            for(Vertice vertice : grafo.getVertices()) {
-//                System.out.println("- Vértice " + vertice.getRotulo());
-//            }
-//            CreateGraphviz gviz = new CreateGraphviz(grafo);
 
-//            gviz.createGrafoDotFile("grafo.dot", "grafoTest");
+            gviz.createGrafoDotFile("grafo", "Grafo");
+            gviz.createVerticesDotFile("vertices", "Vertices");
 
         }
     }

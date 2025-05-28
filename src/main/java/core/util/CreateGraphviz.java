@@ -14,7 +14,7 @@ public class CreateGraphviz {
     public CreateGraphviz(Grafo grafo){
         this.grafo = grafo;
         this.vertices = grafo.getVertices();
-        this.matrizAdjacencia = grafo.getAdjacencias().getMatrizAdjacencias();
+        this.matrizAdjacencia = grafo.getAdjacencias().getMatriz();
     }
 
     public void createVerticesDotFile(String fileName, String graphName) {
@@ -24,15 +24,9 @@ public class CreateGraphviz {
             sb.append(grafo.getVerticeRotulo(i)).append(";\n");
         }
         sb.append("}");
-
-        try{
-            FileWriter fileWriter = new FileWriter(fileName);
-
-            fileWriter.write(sb.toString());
-            fileWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        String data = sb.toString();
+        System.out.println(data);
+        saveFile(fileName,graphName,data);
     }
 
     public void createGrafoDotFile(String fileName, String graphName) {
@@ -54,12 +48,17 @@ public class CreateGraphviz {
             }
         }
         sb.append("}");
-        System.out.println(sb.toString());
 
+        String data = sb.toString();
+        System.out.println(data);
+        saveFile(fileName,graphName,data);
+    }
+
+    private void saveFile(String fileName, String graphName, String data) {
         try{
             FileWriter fileWriter = new FileWriter(fileName + ".dot");
 
-            fileWriter.write(sb.toString());
+            fileWriter.write(data);
             fileWriter.close();
             System.out.println("Arquivo " + fileName + ".dot criado com sucesso!" );
         } catch (IOException e) {

@@ -1,12 +1,9 @@
 package aplicacao;
 
 import core.Grafo;
-import core.Vertice;
 import core.util.CreateGraphviz;
 
-import java.util.List;
-
-public class MainTest {
+public class MainDama {
     public static void main(String[] args) throws Exception {
         Grafo grafo = new Grafo();
         grafo.adicionarVertice("A1");
@@ -51,29 +48,10 @@ public class MainTest {
 
         grafo.conectarVertices("C2","C3");
 
-        System.out.println("Grau do vértice A: " +
-                grafo.getVertice("A1").getGrau());
-        System.out.println("Grau do vértice D: " +
-                grafo.getVertice("B1").getGrau());
-        System.out.println("Grau do vértice C: " +
-                grafo.getVertice("C1").getGrau());
-        System.out.println();
-        System.out.print("O vértice A possui as seguintes adjacências: ");
-        List<Vertice> adjacentes = grafo.getAdjacencias("A1");
-        for(Vertice vertice : adjacentes) {
-            System.out.print(vertice.getRotulo() + " ");
-        }
-        System.out.println();
-        System.out.print("O vértice C possui as seguintes adjacências: ");
-        adjacentes = grafo.getAdjacencias("C1");
-        for(Vertice vertice : adjacentes) {
-            System.out.print(vertice.getRotulo() + " ");
-        }
-
         CreateGraphviz cviz = new CreateGraphviz(grafo);
         System.out.println();
 
-        cviz.createGrafoDotFile("dama.dot", "dama");
-        cviz.createVerticesDotFile("vertices.dot", "grafoVertice");
+        cviz.createGrafoDotFile("dama", "dama");
+        cviz.createVerticesDotFile("vertices", "grafoVertice");
     }
 }

@@ -53,7 +53,7 @@ public class MatrizAdjacencia {
     }
 
 
-    public int[][] getMatrizAdjacencias() {
+    public int[][] getMatriz() {
         return this.matriz;
     }
 }
