@@ -108,6 +108,25 @@ public class Graph {
         return edges;
     }
 
+    /**
+     * Metodo auxiliar para implementação do algoritmo de Prim.
+     * @param vertex
+     * @return adjacencies
+     */
+    public List<Edge> getAllEdgesFrom(Vertex vertex) {
+        List<Edge> adjacencies = new ArrayList<>();
+        Integer index = vertexIndex.get(vertex);
+
+        if (index != null) {
+            for (int j = 0; j < currentSize; j++) {
+                if (adjacencyMatrix[index][j] != null) {
+                    adjacencies.add(adjacencyMatrix[index][j]);
+                }
+            }
+        }
+        return adjacencies;
+    }
+
     public Edge[][] getAdjacencyMatrix() {
         return adjacencyMatrix;
     }
