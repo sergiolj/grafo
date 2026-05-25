@@ -2,7 +2,6 @@ package core.spanningTree.util;
 
 import core.spanningTree.model.Graph;
 import core.spanningTree.model.Vertex;
-import core.util.MatrixConverter;
 
 import java.io.FileWriter;
 import java.io.IOException;
