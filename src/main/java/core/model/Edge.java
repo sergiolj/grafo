@@ -2,9 +2,9 @@ package core.model;
 
 public class Edge implements Comparable<Edge> {
 
-    private Vertex origin;
-    private Vertex destination;
-    private int weight;
+    private final Vertex origin;
+    private final Vertex destination;
+    private final int weight;
 
     public Edge(Vertex origin, Vertex destination, int weight) {
         this.origin = origin;
