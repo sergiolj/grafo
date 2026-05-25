@@ -1,4 +1,4 @@
-package core.model;
+package core.kruskal.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

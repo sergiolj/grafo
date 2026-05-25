@@ -1,6 +1,8 @@
 package core.kruskal;
 
-import core.model.*;
+import core.kruskal.model.Edge;
+import core.kruskal.model.Graph;
+import core.kruskal.model.Vertex;
 
 import java.util.Arrays;
 import java.util.List;

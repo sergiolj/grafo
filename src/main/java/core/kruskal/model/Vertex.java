@@ -1,4 +1,4 @@
-package core.model;
+package core.kruskal.model;
 
 public class Vertex {
     private int degree;

@@ -1,7 +1,7 @@
 package core.kruskal;
 
-import core.model.Graph;
-import core.model.Edge;
+import core.kruskal.model.Graph;
+import core.kruskal.model.Edge;
 
 import java.util.ArrayList;
 import java.util.Comparator;
