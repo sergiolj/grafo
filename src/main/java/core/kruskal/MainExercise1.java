@@ -7,7 +7,7 @@ import core.kruskal.model.Vertex;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class MainExercise1 {
     public static void main(String[] args) {
 
         System.out.println("Inicializando o Grafo...");
@@ -50,6 +50,8 @@ public class Main {
         }
 
         graph.printEdgeList();
+
+        graph.printVertexList();
 
         graph.printAdjacencyMatrix();
 

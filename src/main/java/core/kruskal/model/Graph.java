@@ -1,9 +1,6 @@
 package core.kruskal.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     private final Edge [][] adjacencyMatrix;
@@ -59,9 +56,9 @@ public class Graph {
         for(int line = 0; line < currentSize; line++) {
             for(int column = 0; column < currentSize; column++) {
                 if(adjacencyMatrix[line][column] != null) {
-                    System.out.printf("%-15d", adjacencyMatrix[line][column].getWeight());
+                    System.out.printf("%-8d", adjacencyMatrix[line][column].getWeight());
                 }else {
-                    System.out.printf("%-15s", "-");
+                    System.out.printf("%-8s", "-");
                 }
             }
             System.out.println();
@@ -70,9 +67,12 @@ public class Graph {
 
     public void printVertexList(){
         System.out.println("\nListagem de vértices com seus graus.");
-        for(Vertex v : vertexIndex.keySet()) {
-            System.out.println("[" + v.getLabel() + "] Degree=" + v.getDegree());
-        }
+        vertexIndex.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.comparing(Vertex::getLabel)))
+                .forEach(entry -> {
+                    Vertex v = entry.getKey();
+                    System.out.println(v.toString());
+                });
     }
 
     public void printEdgeList(){
