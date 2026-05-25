@@ -1,8 +1,11 @@
-package core.kruskal;
+package core.spanningTree.main;
 
-import core.kruskal.model.Edge;
-import core.kruskal.model.Graph;
-import core.kruskal.model.Vertex;
+import core.spanningTree.kruskal.SpanningTreeKruskalAlgorithm;
+import core.spanningTree.model.Edge;
+import core.spanningTree.model.Graph;
+import core.spanningTree.model.Vertex;
+import core.spanningTree.util.CreateGraphviz;
+import core.spanningTree.util.MatrixConverter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,7 +57,8 @@ public class MainExercise3 {
         Edge HJ = new Edge(H,J,2);
         Edge IJ = new Edge(I,J,18);
 
-        List<Edge> edgeList = Arrays.asList(AB,AC,AD,BD,BE,CD,CF,DE,DF,DG,EG,EH,FG,FI,GH,GI,GJ,HJ,IJ);
+        List<Edge> edgeList = Arrays.asList(AB,AC,AD,BD,BE,CD,CF,DE,DF,
+                DG,EG,EH,FG,FI,GH,GI,GJ,HJ,IJ);
 
         for (Edge edge : edgeList) {
             graph.addEdge(edge);
@@ -66,6 +70,11 @@ public class MainExercise3 {
 
         graph.printAdjacencyMatrix();
 
-        Kruskal.UnionFind.execute(graph);
+        SpanningTreeKruskalAlgorithm.UnionFind.execute(graph);
+
+        int [][] adjacencySimple = MatrixConverter.convertWeightedToSimple(graph);
+        MatrixConverter.printMatrix(adjacencySimple);
+        CreateGraphviz cvg = new CreateGraphviz(graph);
+        cvg.createGrafoDotFile("Ex3","Ex3");
     }
 }

@@ -1,4 +1,4 @@
-package core.kruskal.model;
+package core.spanningTree.model;
 
 public class Edge implements Comparable<Edge> {
 

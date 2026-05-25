@@ -1,4 +1,4 @@
-package core.kruskal.model;
+package core.spanningTree.model;
 
 public class Vertex {
     private int degree;

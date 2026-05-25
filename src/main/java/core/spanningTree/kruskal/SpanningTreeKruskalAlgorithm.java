@@ -1,7 +1,7 @@
-package core.kruskal;
+package core.spanningTree.kruskal;
 
-import core.kruskal.model.Graph;
-import core.kruskal.model.Edge;
+import core.spanningTree.model.Graph;
+import core.spanningTree.model.Edge;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,7 +12,7 @@ import java.util.List;
  * Essa classe deve receber um grafo conectado, não direcional e ponderado e a partir dele criar um arquivo txt com a
  * árvore resultante.
  */
-public class Kruskal {
+public class SpanningTreeKruskalAlgorithm {
     private static List<Edge> spanningTree;
 
     public static class UnionFind{
@@ -69,7 +69,7 @@ public class Kruskal {
         }
     }
 
-    public Kruskal(){}
+    public SpanningTreeKruskalAlgorithm(){}
 
     public List<Edge> getSpanningTree() {
         return spanningTree;

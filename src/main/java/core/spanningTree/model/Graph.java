@@ -1,15 +1,20 @@
-package core.kruskal.model;
+package core.spanningTree.model;
 
 import java.util.*;
 
+/**
+ * Estrutura para armazenar grafos ponderados
+ */
 public class Graph {
     private final Edge [][] adjacencyMatrix;
     private final Map<Vertex, Integer> vertexIndex;
+    private final List<Vertex> vertexList;
     private int currentSize;
 
     public Graph(int maxSize) {
         this.adjacencyMatrix = new Edge[maxSize][maxSize];
-        this.vertexIndex = new HashMap<>();
+        this.vertexIndex = new LinkedHashMap<>();
+        this.vertexList = new ArrayList<>();
         this.currentSize = 0;
         System.out.println("Matriz com " + adjacencyMatrix.length + " posições criada com sucesso!\n" );
     }
@@ -103,58 +108,12 @@ public class Graph {
         return edges;
     }
 
-}
+    public Edge[][] getAdjacencyMatrix() {
+        return adjacencyMatrix;
+    }
 
-//    public List<Vertice> getVertices() {
-//        return this.vertices;
-//    }
-//
-//    public Vertice getVertice(String rotulo) {
-//        this.existeVerticeOrThrow(rotulo);
-//        int indice = this.labelIndex.get(rotulo);
-//        return this.vertices.get(indice);
-//    }
-//
-//    public String getVerticeRotulo(int indice) {
-//        return this.vertices.get(indice).getRotulo();
-//    }
-//
-//    public void conectarVertices(String rotuloVerticeInicial, String rotuloVerticeFinal) throws Exception{
-//        if(!this.existeVertice(rotuloVerticeInicial) || !this.existeVertice(rotuloVerticeFinal)) {
-//            throw new Exception("Para adicionar uma aresta ambos os vértices"
-//                    + "devem existir.");
-//        }
-//        criarMatrizAdjacencia();
-//        int indiceVerticeFinal = this.labelIndex.get(rotuloVerticeInicial);
-//        int indiceVerticeInicial = this.labelIndex.get(rotuloVerticeFinal);
-//        this.matrizAdjacencia.adicionarAresta(indiceVerticeInicial,
-//                indiceVerticeFinal);
-//    }
-//
-//    public List<Vertice> getAdjacencias(String vertice) {
-//        this.existeVerticeOrThrow(vertice);
-//        int indiceVertice = this.labelIndex.get(vertice);
-//        return this.matrizAdjacencia.getAdjacencias(indiceVertice);
-//    }
-//
-//    private boolean existeVerticeOrThrow(String vertice) {
-//        if(!existeVertice(vertice)) {
-//            throw new IllegalArgumentException("O vértice não existe.");
-//        }
-//        return true;
-//    }
-//
-//    private boolean existeVertice(String rotuloVertice) {
-//        int indice = this.labelIndex.get(rotuloVertice);
-//        return this.vertices.get(indice) != null ? true : false;
-//    }
-//
-//    private void criarMatrizAdjacencia() {
-//        if(this.matrizAdjacencia == null){
-//        this.matrizAdjacencia = new MatrizAdjacencia(new ArrayList<Vertice>(this.vertices));
-//    }
-//    }
-//
-//    public MatrizAdjacencia getAdjacencias() {
-//        return this.matrizAdjacencia;
-//    }
+    public List<Vertex> getVertexList() {
+        this.vertexList.addAll(vertexIndex.keySet());
+        return vertexList;
+    }
+}

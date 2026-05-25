@@ -1,8 +1,11 @@
-package core.kruskal;
+package core.spanningTree.main;
 
-import core.kruskal.model.Edge;
-import core.kruskal.model.Graph;
-import core.kruskal.model.Vertex;
+import core.spanningTree.kruskal.SpanningTreeKruskalAlgorithm;
+import core.spanningTree.model.Edge;
+import core.spanningTree.model.Graph;
+import core.spanningTree.model.Vertex;
+import core.spanningTree.util.CreateGraphviz;
+import core.spanningTree.util.MatrixConverter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +18,7 @@ public class MainExercise1 {
         
         Vertex A = new Vertex("Aberdeen");
         Vertex E = new Vertex("Edinburgh");
-        Vertex F = new Vertex("Fort William");
+        Vertex F = new Vertex("Fort_William");
         Vertex G = new Vertex("Glasgow");
         Vertex I = new Vertex("Inverness");
         Vertex P = new Vertex("Perth");
@@ -43,6 +46,8 @@ public class MainExercise1 {
         Edge GP = new Edge(G,P,61);
         Edge IP = new Edge(I,P,112);
 
+
+
         List<Edge> edgeList = Arrays.asList(AE, AF, AG, AI, AP, EF, EG, EI, EP, FG, FI, FP, GI, GP, IP);
 
         for (Edge edge : edgeList) {
@@ -55,6 +60,15 @@ public class MainExercise1 {
 
         graph.printAdjacencyMatrix();
 
-        Kruskal.UnionFind.execute(graph);
+        SpanningTreeKruskalAlgorithm.UnionFind.execute(graph);
+
+        int [][] adjacencySimple = MatrixConverter.convertWeightedToSimple(graph);
+        MatrixConverter.printMatrix(adjacencySimple);
+
+        CreateGraphviz cvg = new CreateGraphviz(graph);
+        cvg.createGrafoDotFile("Ex1","Cidades");
+
+        System.out.println("Tipos diferentes de motores de layout do graphviz:");
+        System.out.println("dot circo neato twopi\nTipo de uso :~/ circo -Tpdf Ex2_fig2.dot -o Exercicio2_f2.pdf");
     }
 }
