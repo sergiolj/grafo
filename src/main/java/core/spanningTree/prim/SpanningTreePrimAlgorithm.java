@@ -14,32 +14,21 @@ public class SpanningTreePrimAlgorithm {
         /**
          * O Prim precisa de um ponto de partida. Você passa o grafo e a cidade de origem.
          */
-        public static List<Edge> execute(Graph graph, Vertex startVertex) {
+        public static List<Edge> execute(Graph originalGraph, Vertex startVertex) {
             List<Edge> spanningTree = new ArrayList<>();
-
-            // Mantém o registro das cidades que já fazem parte do nosso "território"
             Set<Vertex> visited = new HashSet<>();
-
-            // A Fila de Prioridade que sempre deixará a aresta mais barata no topo
             PriorityQueue<Edge> frontier = new PriorityQueue<>(Comparator.comparingInt(Edge::getWeight));
 
             int totalCost = 0;
 
             System.out.println("\n--- Iniciando Prim a partir de: " + startVertex.getLabel() + " ---");
 
-            // 1. Pousamos no vértice inicial
             visited.add(startVertex);
+            frontier.addAll(originalGraph.getAllEdgesFrom(startVertex));
 
-            // Colocamos todas as arestas que saem dele na nossa fronteira
-            frontier.addAll(graph.getAllEdgesFrom(startVertex));
-
-            // 2. Expandir a fronteira até dominarmos todas as cidades
-            while (!frontier.isEmpty() && visited.size() < graph.getCurrentSize()) {
-
-                // Pega a aresta mais barata disponível na fronteira inteira
+            while (!frontier.isEmpty() && visited.size() < originalGraph.getCurrentSize()) {
                 Edge cheapestEdge = frontier.poll();
 
-                // Como a aresta liga A a B, precisamos descobrir qual das duas pontas é a cidade "nova"
                 Vertex newVertex = null;
                 if (!visited.contains(cheapestEdge.getOrigin())) {
                     newVertex = cheapestEdge.getOrigin();
@@ -47,27 +36,48 @@ public class SpanningTreePrimAlgorithm {
                     newVertex = cheapestEdge.getDestination();
                 }
 
-                // Se a aresta nos levou a uma cidade que ainda não tínhamos visitado...
                 if (newVertex != null) {
-                    // Dominamos a cidade!
                     visited.add(newVertex);
                     spanningTree.add(cheapestEdge);
                     totalCost += cheapestEdge.getWeight();
 
-                    System.out.println("Expandindo para: [" + cheapestEdge.getOrigin().getLabel() + " - " + cheapestEdge.getDestination().getLabel() + "] Peso: " + cheapestEdge.getWeight());
+                    System.out.println("Expandindo para: [" + cheapestEdge.getOrigin().getLabel() +
+                            " - " + cheapestEdge.getDestination().getLabel() +
+                            "] Peso: " + cheapestEdge.getWeight());
 
-                    // Adicionamos as estradas da cidade nova ao nosso radar de fronteira
-                    for (Edge edge : graph.getAllEdgesFrom(newVertex)) {
-                        // Só adicionamos as estradas que levam a lugares desconhecidos
+                    for (Edge edge : originalGraph.getAllEdgesFrom(newVertex)) {
                         if (!visited.contains(edge.getOrigin()) || !visited.contains(edge.getDestination())) {
                             frontier.add(edge);
                         }
                     }
                 }
-                // Se as duas pontas da aresta já estavam em 'visited', o ciclo foi evitado automaticamente!
             }
 
             System.out.println("Custo Total Mínimo da AGM (Prim): " + totalCost);
             return spanningTree;
         }
-}
+
+        /**
+         * NOVO MÉTODO: Retorna a Árvore Geradora Mínima em formato de objeto Graph.
+         * Reutiliza a lógica do execute() para evitar duplicação de código.
+         */
+        public static Graph executeAsGraph(Graph originalGraph, Vertex startVertex) {
+            // 1. Roda a lógica matemática já pronta para obter a lista de arestas
+            List<Edge> mstEdges = execute(originalGraph, startVertex);
+
+            // 2. Cria a nova estrutura de dados
+            Graph mstGraph = new Graph(originalGraph.getCurrentSize());
+
+            // 3. Popula o novo grafo com os vértices
+            for (Vertex v : originalGraph.getVertexList()) {
+                mstGraph.addVertex(v);
+            }
+
+            // 4. Popula a matriz de adjacências apenas com as estradas vencedoras
+            for (Edge edge : mstEdges) {
+                mstGraph.addEdge(edge);
+            }
+
+            return mstGraph;
+        }
+    }

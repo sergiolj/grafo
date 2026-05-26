@@ -4,6 +4,7 @@ import core.spanningTree.kruskal.SpanningTreeKruskalAlgorithm;
 import core.spanningTree.model.Edge;
 import core.spanningTree.model.Graph;
 import core.spanningTree.model.Vertex;
+import core.spanningTree.prim.SpanningTreePrimAlgorithm;
 import core.spanningTree.util.CreateGraphviz;
 import core.spanningTree.util.MatrixConverter;
 
@@ -59,11 +60,18 @@ public class MainExercise2Fig1 {
 
         graph.printAdjacencyMatrix();
 
-        SpanningTreeKruskalAlgorithm.UnionFind.execute(graph);
-
         int [][] adjacencySimple = MatrixConverter.convertWeightedToSimple(graph);
         MatrixConverter.printMatrix(adjacencySimple);
+
+        SpanningTreeKruskalAlgorithm.UnionFind.execute(graph);
+
+        Graph agm = new Graph(8);
+        agm = SpanningTreePrimAlgorithm.executeAsGraph(graph,A);
+
+        CreateGraphviz cgvAgm = new CreateGraphviz(agm);
+        cgvAgm.createGrafoDotFile("Ex2-fig1_AgmPrim","AGM_Prim");
+
         CreateGraphviz cvg = new CreateGraphviz(graph);
-        cvg.createGrafoDotFile("Ex2_fg1","Ex2_Figura1");
+        cvg.createGrafoDotFile("Ex2-fg1","Figura1");
     }
 }

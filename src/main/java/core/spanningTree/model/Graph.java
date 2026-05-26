@@ -132,7 +132,7 @@ public class Graph {
     }
 
     public List<Vertex> getVertexList() {
-        this.vertexList.addAll(vertexIndex.keySet());
-        return vertexList;
+//        this.vertexList.addAll(vertexIndex.keySet());
+        return new ArrayList<>(vertexIndex.keySet());
     }
 }
